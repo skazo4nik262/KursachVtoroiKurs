@@ -17,6 +17,7 @@
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Header="Отсканированые штрих-коды" DisplayMemberBinding="{Binding Codee}" Width="200"/>
+                        <GridViewColumn Header="Когда отсканированно" DisplayMemberBinding="{Binding Time}" Width="200"/>
                     </GridView>
                 </ListView.View>
             </ListView>

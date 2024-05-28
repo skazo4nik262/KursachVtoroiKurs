@@ -1,4 +1,4 @@
-﻿<Page x:Class="DalsheBogaNet.Mvvm.View.ListProducts"
+﻿<Page x:Class="DalsheBogaNet.Mvvm.View.ListProductsInfo"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -6,12 +6,11 @@
       xmlns:local="clr-namespace:DalsheBogaNet.Mvvm.View"
       xmlns:vm="clr-namespace:DalsheBogaNet.Mvvm.ViewModel"
       mc:Ignorable="d" 
-      DataContext="{DynamicResource listVM}"
+      DataContext="{DynamicResource lvm}"
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="ListProducts">
-
+      Title="ListProductsInfo">
     <Page.Resources>
-        <vm:ListProductsVM x:Key="listVM"/>
+        <vm:ListProductsVM x:Key="lvm"/>
         <Style x:Key="itemsTag" TargetType="ItemsControl">
             <Setter Property="ItemsPanel">
                 <Setter.Value>
@@ -29,12 +28,7 @@
             </Setter>
         </Style>
     </Page.Resources>
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition />
-        </Grid.RowDefinitions>
+    <StackPanel>
         <Menu>
             <MenuItem Header="Добавить" Command="{Binding Create}"/>
             <MenuItem Header="Изменить" Command="{Binding Edit}"/>
@@ -42,27 +36,25 @@
             <MenuItem Header="Уведомления" Command="{Binding Sms}"/>
 
         </Menu>
-        <StackPanel Orientation="Horizontal" Grid.Row="1">
+        <StackPanel Orientation="Horizontal">
             <StackPanel Margin="3">
                 <TextBlock Text="Поиск по наименованию или описанию" />
                 <TextBox Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"/>
             </StackPanel>
         </StackPanel>
-        <ListView ItemsSource="{Binding Products}" SelectedItem="{Binding SelectedProduct}" Grid.Row="2">
+        <ListView ItemsSource="{Binding Products}">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="ID" DisplayMemberBinding="{Binding ID}" />
                     <GridViewColumn Header="Название" DisplayMemberBinding="{Binding Name}" />
                     <GridViewColumn Header="Описание" DisplayMemberBinding="{Binding Description}" />
-                    <GridViewColumn Header="Цена" DisplayMemberBinding="{Binding Price}" />
-                    <GridViewColumn Header="Размер" DisplayMemberBinding="{Binding Size}" />
-                    <GridViewColumn Header="Хрупкость" DisplayMemberBinding="{Binding Breakable}" />
-                    <GridViewColumn Header="Поставщик" DisplayMemberBinding="{Binding Postavhik}" />
-                    <GridViewColumn Header="Количество" DisplayMemberBinding="{Binding Amount}" />
-                    <GridViewColumn Header="Код" DisplayMemberBinding="{Binding Code}" />
-                    <GridViewColumn Header="Когда изменено" DisplayMemberBinding="{Binding Time}" />
+                    <GridViewColumn Header="Цена" DisplayMemberBinding="{Binding Price}"/>
+                    <GridViewColumn Header="Размер" DisplayMemberBinding="{Binding Size}"/>
+                    <GridViewColumn Header="Хрупкость" DisplayMemberBinding="{Binding Breakable}"/>
+                    <GridViewColumn Header="Поставщик" DisplayMemberBinding="{Binding Postavhik}"/>
+                    <GridViewColumn Header="Количество" DisplayMemberBinding="{Binding Amount}"/>
                 </GridView>
             </ListView.View>
         </ListView>
-    </Grid>
+    </StackPanel>
 </Page>

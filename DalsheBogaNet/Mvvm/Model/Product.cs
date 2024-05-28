@@ -9,12 +9,14 @@ namespace DalsheBogaNet.Mvvm.Model
     public class Product
     {
         public int ID { get; set; }
-        public string Name { get; set; }
-        public string Description { get; set; }
-        public decimal Price { get; set; }
-        public double Size { get; set; }
-        public bool Breakable { get; set; }
-        public int Postavhik {  get; set; }
-        public int Amount { get; set; }
+        public string Name { get; set; } = "0";
+        public string Description { get; set; } = "0";
+        public decimal Price { get; set; } = 0;
+        public double Size { get; set; } = 0;
+        public bool Breakable { get; set; } = false;
+        public int Postavhik {  get; set; } = 1;
+        public int Amount { get; set; } = 0;
+        public string Code { get; set; }
+        public DateTime Time { get; set; }
     }
 }

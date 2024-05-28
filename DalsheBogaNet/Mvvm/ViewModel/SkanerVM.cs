@@ -20,9 +20,22 @@ namespace DalsheBogaNet.Mvvm.ViewModel
         public VmCommand Nazad { get; set; }
         private ObservableCollection<Code> codees;
         Action close;
+
+        private Product product = new();
+
+        public Product Product
+        {
+            get => product;
+            set
+            {
+                product = value;
+                Signal();
+            }
+
+        }
         public SkanerVM()
         {
-            string sql = "SELECT Code From Codes";
+            string sql = "SELECT Code, Time From Codes";
 
             Codes = new ObservableCollection<Code>(ProductZapolnenie.Instance.GetAllCode(sql));
 
@@ -71,7 +84,18 @@ namespace DalsheBogaNet.Mvvm.ViewModel
                 else
                     code.Codee += a[rnd.Next(0, 9)];
             }
+            code.Time = DateTime.UtcNow;
             ProductZapolnenie.Instance.AddCode(code);
+            // это не нужно
+            /*if (Codes.Count > 500)
+            {
+                Codes.Clear();
+                ProductZapolnenie.Instance.RemoveCodes();
+            }*/
+            Product.Time = code.Time;
+            Product.Code = code.Codee;
+            ProductZapolnenie.Instance.AddProduct(Product);
+            // это тоже
             //code.Codes.Add(code.Codee);
 
             //Codees.Add(code.Codee);
@@ -84,6 +108,7 @@ namespace DalsheBogaNet.Mvvm.ViewModel
         }
         private void Otskan()
         {
+            //и это
             //MessageBox.Show("Данная функция в настоящий момент времени не работает.");
             Otskanirovani otskanirovani = new Otskanirovani();
             otskanirovani.Show();
